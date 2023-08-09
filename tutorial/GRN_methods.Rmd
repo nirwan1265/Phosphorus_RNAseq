@@ -1,0 +1,27 @@
+RNA seq:
+1.)	RNentropy
+Based on Shannon entropy
+https://link.springer.com/protocol/10.1007/978-1-0716-1307-8_6
+
+2.)	GENIE3
+https://bioconductor.org/packages/release/bioc/html/GENIE3.html
+https://nph.onlinelibrary.wiley.com/doi/full/10.1111/nph.16627
+
+3.)	MI, Co-expression and Clustering
+https://www.sciencedirect.com/science/article/pii/S1874939919300410
+
+4.)	GRN-TF
+https://academic.oup.com/nar/article/49/D1/D97/5957161
+
+5.)	Time Series
+https://www.mdpi.com/2073-4425/12/3/352
+
+6.)	Machine learning
+https://www.cell.com/molecular-cell/pdf/S1097-2765(21)01073-X.pdf
+https://link.springer.com/chapter/10.1007/978-981-16-5993-5_6
+
+
+
+
+
+
