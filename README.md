@@ -6,6 +6,7 @@ Using trim-galore with default settings and adapter auto detection.
 Used in this paper: https://www.nature.com/articles/s41598-023-29115-9
 
 ### Installing trim_galore in the server
+https://github.com/FelixKrueger/TrimGalore
 Trim_galore can be installed through conda using the script. 
 
 
