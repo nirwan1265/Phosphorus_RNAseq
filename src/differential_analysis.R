@@ -8,6 +8,7 @@ B73 <- read.csv(paste0(data_dir,"B73.csv"))
 rownames(B73) <- B73[,1]
 B73 <- B73[,-1]
 colnames(B73)
+head(B73)
 
 MICH <- read.csv(paste0(data_dir,"MICH.csv"))
 rownames(MICH) <- MICH[,1]
@@ -31,6 +32,7 @@ design_matrix_B73 <- data.frame(
 
 rownames(design_matrix_B73) <- design_matrix_B73[,1]
 design_matrix_B73 <- design_matrix_B73[,-1]
+typeof(design_matrix_B73)
 
 #MICH
 design_matrix_MICH <- data.frame(
@@ -61,7 +63,7 @@ design_matrix_MICH <- design_matrix_MICH[,-1]
 # Creating a regression matrix for the full regression model, degrees = 3 for 4 time points
 design_B73 <- make.design.matrix(design_matrix_B73, degree = 3)
 design_MICH <- make.design.matrix(design_matrix_MICH, degree = 3)
-
+str(design_B73)
 # Significant genes
 fit_B73 <- p.vector(B73, design_B73, Q = 0.05, MT.adjust = "BH", min.obs = 20)
 fit_MICH <- p.vector(MICH, design_MICH, Q = 0.05, MT.adjust = "BH", min.obs = 20)
@@ -109,6 +111,16 @@ list_onlyControlvsPhosphorus_B73 <- list_controlvsphosphorus_sig_B73$gene[!(list
 list_onlyControlvsPhosphorus_B73 <- list_controlvsphosphorus_sig_B73[list_controlvsphosphorus_sig_B73$gene %in% list_onlyControlvsPhosphorus_B73, ]
 list_onlyControlvsPhosphorus_MICH <- list_controlvsphosphorus_sig_MICH$gene[!(list_controlvsphosphorus_sig_MICH$gene %in% list_phosphorus_sig_MICH$gene)]
 list_onlyControlvsPhosphorus_MICH <- list_controlvsphosphorus_sig_MICH[list_controlvsphosphorus_sig_MICH$gene %in% list_onlyControlvsPhosphorus_MICH, ]
+
+
+#Saving:
+write.csv(rownames(list_all_sig_B73),"all_significant_genes_B73.csv", row.names = F)
+write.csv(rownames(list_all_sig_MICH),"all_significant_genes_MICH.csv", row.names = F)
+write.csv(list_onlyP_B73$gene,"onlyP_significant_genes_B73.csv", row.names = F)
+write.csv(list_onlyP_MICH$gene,"onlyP_significant_genes_MICH.csv", row.names = F)
+write.csv(list_onlyControlvsPhosphorus_B73$gene,"ControlvsP_significant_genes_B73.csv", row.names = F)
+write.csv(list_onlyControlvsPhosphorus_MICH$gene,"ControlvsP_significant_genes_MICH.csv", row.names = F)
+
 
 
 # Venn
