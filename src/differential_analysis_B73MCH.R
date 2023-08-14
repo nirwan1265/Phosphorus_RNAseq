@@ -20,7 +20,7 @@ design_matrix_B73MCH <- design_matrix_B73MCH[,-1]
 
 design_B73MCH <- make.design.matrix(design_matrix_B73MCH, degree = 3)
 
-fit_B73MCH <- p.vector(B73MCH, design_B73MCH, Q = 0.05, MT.adjust = "BH", min.obs = 19)
+fit_B73MCH <- p.vector(B73MCH, design_B73MCH, Q = 0.05, MT.adjust = "BH", min.obs = 10, counts = TRUE)
 
 tstep_B73MCH <- T.fit(fit_B73MCH, step.method = "backward", alfa = 0.05)
 

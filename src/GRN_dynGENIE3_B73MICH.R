@@ -27,6 +27,11 @@ TS1 <- B73MICH %>%
 onlyP <- read.csv("result/onlyP_significant_genes_B73MCH.csv")
 CvP <- read.csv("result/ControlvsP_significant_genes_B73MCH.csv")
 all_P_CvP <- read.csv("result/all_significant_genes_B73MCH.csv")
+
+onlyP <- read.csv("onlyP_significant_genes_B73MCH.csv")
+CvP <- read.csv("ControlvsP_significant_genes_B73MCH.csv")
+all_P_CvP <- read.csv("all_significant_genes_B73MCH.csv")
+
 TS1_onlyP <- TS1[onlyP$gene, ]
 TS1_CvP <- TS1[CvP$gene, ]
 TS1_P_CvP <- TS1[all_P_CvP$gene, ]
@@ -143,7 +148,7 @@ link.list_onlyP <- get.link.list(res_onlyP$weight.matrix)
 res_onlyP$weight.matrix
 
 # Gene degradation rates
-decay_rates_onlyP <- 0.02
+decay_rates_onlyP <- 0.5
 # Or alternatively
 gene.names_onlyP <- rownames(TS.data_onlyP[[1]])
 decay_rates_onlyP <- rep(0.02, length(gene.names_onlyP))
@@ -199,3 +204,24 @@ res_P_CvP2 <- get.link.list(res_P_CvP2$weight.matrix)
 head(res_P_CvP2)
 
 
+# Set a threshold for strong links
+threshold <- 0.001  # Adjust this threshold value as needed
+
+
+# Convert values below the threshold to 0, keeping only strong links
+adjacency_matrix <- as.matrix(res_onlyP$weight.matrix)
+adjacency_matrix[adjacency_matrix <= threshold] <- 0
+
+# Create a graph from the adjacency matrix
+graph <- graph_from_adjacency_matrix(adjacency_matrix, mode = "undirected")
+
+# Layout
+LO <- layout_with_fr(graph)
+
+# Removing empty nodes
+isolated <- which(igraph::degree(graph) == 0)
+graph <- delete.vertices(graph, isolated)
+LO <- LO[-isolated, ]
+
+quartz()
+plot(graph)
