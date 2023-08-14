@@ -40,7 +40,7 @@ library(coda)
 # https://sourceforge.net/projects/mcmc-jags/
 library(rjags)
 #install.packages("abn")
-library(abn)
+#library(abn)
 #install.packages("NMF")
 library(NMF)
 library(data.table)

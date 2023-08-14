@@ -22,7 +22,29 @@ design_B73MCH <- make.design.matrix(design_matrix_B73MCH, degree = 3)
 
 fit_B73MCH <- p.vector(B73MCH, design_B73MCH, Q = 0.05, MT.adjust = "BH", min.obs = 19)
 
-tstep_B73 <- T.fit(fit_B73, step.method = "backward", alfa = 0.05)
+tstep_B73MCH <- T.fit(fit_B73MCH, step.method = "backward", alfa = 0.05)
 
-sig_B73 <- get.siggenes(tstep_B73, rsq = 0.6, vars = "groups")
-suma2Venn(sig_B73$summary[, c(1:2)])
+sig_B73MCH <- get.siggenes(tstep_B73MCH, rsq = 0.6, vars = "groups")
+suma2Venn(sig_B73MCH$summary[, c(1:2)])
+
+
+list_all_sig_B73MCH <- tstep_B73MCH[["sol"]]
+
+list_phosphorus_sig_B73MCH <- sig_B73MCH[["sig.genes"]][["Phosphorus"]][["sig.pvalues"]]
+
+list_controlvsphosphorus_sig_B73MCH <- sig_B73MCH[["sig.genes"]][["ControlvsPhosphorus"]][["sig.pvalues"]]
+
+list_onlyP_B73MCH <-as.data.frame(rownames(list_phosphorus_sig_B73MCH)[!(rownames(list_phosphorus_sig_B73MCH) %in% rownames(list_controlvsphosphorus_sig_B73MCH))])
+
+list_onlyCvsP_B73MCH <-as.data.frame(rownames(list_controlvsphosphorus_sig_B73MCH)[!(rownames(list_controlvsphosphorus_sig_B73MCH) %in% rownames(list_phosphorus_sig_B73MCH))])
+
+
+write.csv(list_all_sig_B73MCH,"all_significant_genes_B73MCH.csv", row.names = T)
+
+write.csv(list_onlyP_B73MCH,"onlyP_significant_genes_B73MCH.csv", row.names = F)
+
+write.csv(list_onlyCvsP_B73MCH,"ControlvsP_significant_genes_B73MCH.csv", row.names = F)
+
+
+
+
