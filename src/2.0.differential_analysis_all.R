@@ -91,14 +91,10 @@ see.genes(sig_group$sig.genes$B73_noP, show.fit = T, dis =design$dis, groups.vec
 ?see.genes()
 
 
-see.genes(data,design_matrix,how.fit = T, dis =design$dis, groups.vector = design$groups.vector,
-          cluster.method="hclust" ,cluster.data = 1, k.mclust=TRUE,distance="euclidean")
-?see.genes())
-# Get sig genes
 
 
 
-x
+
 
 PlotGroups(design, edesign = design_matrix)
 data("data.abiotic")
@@ -125,8 +121,12 @@ STMDE66 <- data.abiotic[rownames(data.abiotic)=="STMDE66", ]
 
 
 # For individual gene. replace data with individual gene
+
+STMDE66 <- data.abiotic[rownames(data.abiotic)=="STMDE66", ]
+Zm00001eb084030 <- data[rownames(data)=="Zm00001eb084030", ]
+Zm00001eb291010 <- data[rownames(data)=="Zm00001eb291010", ]
 quartz()
-PlotGroups (data, edesign = design_matrix, show.fit = T,
+PlotGroups (Zm00001eb291010, edesign = design_matrix, show.fit = T,
              dis = design$dis, groups.vector = design$groups.vector)
 
 

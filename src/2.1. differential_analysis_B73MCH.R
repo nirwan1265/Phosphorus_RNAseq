@@ -38,6 +38,13 @@ suma2Venn(sig_B73MCH_each$summary[, c(1:8)])
 suma2Venn(sig_B73MCH_each$summary[, c(1:8)])
 
 
+# Saving
+B73_noP <- sig_B73MCH_groups$sig.genes$B73_noP$sig.pvalues
+MICH_noPvsB73_noP <- sig_B73MCH_groups$sig.genes$MICH_noPvsB73_noP$sig.pvalues
+
+write.csv(B73_noP,"result/B73_noP_VS_MICH_noP/B73_noP.csv")
+write.csv(MICH_noPvsB73_noP,"result/B73_noP_VS_MICH_noP/MICH_noPvsB73_noP.csv")
+
 
 list_all_sig_B73MCH <- tstep_B73MCH[["sol"]]
 
