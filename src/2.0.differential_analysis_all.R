@@ -86,12 +86,14 @@ suma2Venn(sig_group$summary[, c(2:4)])
 
 # Cluster
 quartz()
-see.genes(sig_group$sig.genes$MICH_PvsB73_noP, show.fit = T, dis =design$dis, groups.vector = design$groups.vector,
+see.genes(sig_group$sig.genes$B73_noP, show.fit = T, dis =design$dis, groups.vector = design$groups.vector,
           cluster.method="hclust" ,cluster.data = 1, k.mclust=TRUE,distance="euclidean")
 ?see.genes()
 
 
-
+see.genes(data,design_matrix,how.fit = T, dis =design$dis, groups.vector = design$groups.vector,
+          cluster.method="hclust" ,cluster.data = 1, k.mclust=TRUE,distance="euclidean")
+?see.genes())
 # Get sig genes
 
 
