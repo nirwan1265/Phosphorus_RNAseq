@@ -56,13 +56,20 @@ design <- make.design.matrix(design_matrix, degree = 3)
 
 # Fit the first model
 fit <- p.vector(data, design, Q = 0.05, MT.adjust = "BH", min.obs = 10)
+fit_nb <- p.vector(data, design, Q = 0.05, MT.adjust = "BH", min.obs = 10, counts = T)
 
+?p.vector()
 # Significant differences using second step wise regression
 tstep <- T.fit(fit, step.method = "forward", alfa = 0.05)
+tstep_nb <- T.fit(fit, step.method = "forward", alfa = 0.05, family = negative.binomial())
 
 # Get significant genes
 sig_each <- get.siggenes(tstep, rsq = 0.6, vars = "each")
 sig_group <- get.siggenes(tstep, rsq = 0.6, vars = "groups")
+sig_all <- get.siggenes(tstep, rsq = 0.6, vars = "all")
+
+sig_each <- get.siggenes(tstep, rsq = 0.6, vars = "each")
+sig_group_nb <- get.siggenes(tstep, rsq = 0.6, vars = "groups")
 sig_all <- get.siggenes(tstep, rsq = 0.6, vars = "all")
 
 
@@ -125,8 +132,12 @@ STMDE66 <- data.abiotic[rownames(data.abiotic)=="STMDE66", ]
 STMDE66 <- data.abiotic[rownames(data.abiotic)=="STMDE66", ]
 Zm00001eb084030 <- data[rownames(data)=="Zm00001eb084030", ]
 Zm00001eb291010 <- data[rownames(data)=="Zm00001eb291010", ]
+Zm00001eb163840 <- data[rownames(data)=="Zm00001eb163840", ]
+Zm00001eb137390 <- data[rownames(data)=="Zm00001eb137390", ]
+Zm00001eb195620 <- data[rownames(data)=="Zm00001eb195620", ]
+Zm00001eb191310 <- data[rownames(data)=="Zm00001eb191310", ]
 quartz()
-PlotGroups (Zm00001eb291010, edesign = design_matrix, show.fit = T,
+PlotGroups (Zm00001eb191310, edesign = design_matrix, show.fit = T,
              dis = design$dis, groups.vector = design$groups.vector)
 
 

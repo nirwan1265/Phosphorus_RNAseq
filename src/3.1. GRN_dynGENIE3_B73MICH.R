@@ -12,6 +12,7 @@ B73MICH <- read.csv("data/MICHvsB73_noP.csv")
 rownames(B73MICH) <- B73MICH[,1]
 B73MCH <- B73MICH[,-1]
 names(B73MICH)
+
 # Preparing the data
 TS1 <- B73MICH %>%
   dplyr::mutate(Sample_1 = rowMeans(dplyr::select(.,B73_P_null_T1_R1:B73_P_null_T1_R1)),
